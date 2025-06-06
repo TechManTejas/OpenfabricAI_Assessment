@@ -9,6 +9,10 @@ RUN python3 -m pip install --upgrade pip && \
     python3 -m poetry install --only main && \
     rm -rf ~/.cache/pypoetry/{cache,artifacts}
 
+# Install Ollama dependencies
+RUN apt-get update && apt-get install -y curl && \
+    curl -fsSL https://ollama.com/install.sh | sh
+
 # Copy the rest of the source code into the container
 COPY . .
 
